@@ -1,7 +1,7 @@
 import 'dotenv/config'
-import { supabaseAdmin } from './client.js'
-import { signIn } from './auth.js'
-import { getProjectTasks } from './tasks.js'
+import { supabaseAdmin } from '../client.js'
+import { signIn } from '../auth.js'
+import { getProjectTasks } from '../tasks.js'
 
 const PROJECT_ID = process.env.PROJECT_ID || null
 
@@ -39,7 +39,7 @@ if (!PROJECT_ID) {
   console.log('⚠️  getProjectTasks: skipped — set PROJECT_ID env var')
 } else {
   try {
-    await signIn('alice@example.com', 'password')
+    await signIn('alice@example.com', 'alice')
     const tasks = await getProjectTasks(PROJECT_ID)
     const hasAssignedProfile = tasks.some(t => t.assigned_profile !== undefined)
     const hasCreator = tasks.some(t => t.creator !== undefined)

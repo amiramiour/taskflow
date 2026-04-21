@@ -29,7 +29,8 @@ export function subscribeToProject(projectId, callbacks) {
       const users = Object.values(state).flat()
       callbacks.onPresenceChange?.(users)
     })
-    .subscribe(async (status) => {
+    .subscribe(async (status, err) => {
+      console.log('Realtime status:', status, err ?? '')
       if (status === 'SUBSCRIBED') {
         const { data: { user } } = await supabase.auth.getUser()
         if (user) {
